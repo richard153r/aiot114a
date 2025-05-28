@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人小檔案</title>
+</head>
+<body bgcolor="#FFCC99">
+    <form action="test.php" method="post">
+         <fieldset>
+            <legend>請輸入資料</legend>
+            <p>姓&nbsp;&nbsp;&nbsp;名：
+                <input type="text" name="name"></p>
+            <p>性&nbsp;&nbsp;&nbsp;別：
+                <input type="radio" name="sex" value="男生" checked>男
+                <input type="radio" name="sex" value="女生">女
+            </p>
+            <p>學&nbsp;&nbsp;&nbsp;歷：
+                <select name="edu">
+                    <option value="國小">國小</option>
+                    <option value="國中">國中</option>
+                    <option value="高中">高中</option>
+                    <option value="大學">大學</option>
+                </select>
+            </p>
+            <p>地址：<input type="text" name="addr"></p>
+        </fieldset>
+        <fieldset>
+            <legend>其他資訊</legend>
+            <p>興趣：(可複選)<br>
+                    <input type="checkbox" name="hobby[]" value="電玩">電玩
+                    <input type="checkbox" name="hobby[]" value="打球">打球
+                    <input type="checkbox" name="hobby[]" value="逛街">逛街
+                    <input type="checkbox" name="hobby[]" value="音樂">音樂
+                    <input type="checkbox" name="hobby[]" value="閱讀">閱讀
+            </p>
+            <p>意見：<br><textarea name="opinion" rows="4" cols="45"></textarea></p>
+        </fieldset>
+
+        <input type="submit" value="送出">
+        <input type="reset" value="重設">
+    </form>
+</body>
+</html>
