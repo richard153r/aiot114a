@@ -1,0 +1,19 @@
+	.navBg{
+		background-color: rgba(0, 0, 0,0.3);
+		transition: all 0.8s;
+	}
+	.navBg:hover{
+		background-color: rgba(0, 0, 0,0.9);
+		cursor: pointer;
+	}
+
+
+	.pta{
+		padding-top: 15px;
+		box-sizing: border-box;
+	}
+
+	/* 米字號表示全部 防止內容被選取 */
+	*,body{
+		user-select: none;
+	}

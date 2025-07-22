@@ -1,1 +1,0 @@
-nconvert -rtype lanczos -resize 1024 768  -wmopacity 30 -wmflag center -wmfile "DH.Studio" 

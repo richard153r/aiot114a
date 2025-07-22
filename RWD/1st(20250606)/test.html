@@ -1,0 +1,56 @@
+ <!-- ctrl+/ 快速註解 -->
+<!DOCTYPE html> <!-- 網頁類型宣告 DTD(瀏覽器辨識) --> 
+<html lang="en"> <!-- 網頁語言 -->
+<head> <!-- 網頁資訊 頁頭 -->
+	<meta charset="UTF-8"> <!-- 字元編碼 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 行動裝置檢視區域 -->
+	<title>Document</title> <!-- 頁面標題 -->
+</head> <!-- js、css 放在 head 裡面 -->
+<body> <!-- 頁面內容 -->
+	<!-- ctrl+shit+g 快速加上標籤；ctrl+shit+f 快速排版 -->
+	<h1>測試h1</h1> 
+
+	<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam soluta voluptatem odio commodi consequatur provident, at, magnam nobis ducimus beatae. Pariatur ipsam impedit vitae maiores temporibus repellendus accusamus qui nulla.</p>
+    <h2>測試h2</h2>
+	<h3>測試h3</h3>
+	<h4>測試h4</h4>
+	<h5>測試h5</h5>
+	<!-- 可以這樣輸入 table>(tr>td*3)*4 -->
+	<table border="1" width="500" align="center"> <!-- border框線;width寬度;align位置 -->
+		<tr>
+			<td>001</td>
+			<td>AAA</td>
+			<td>RD</td>
+		</tr>
+		<tr>
+			<td>002</td>
+			<td>BBB</td>
+			<td>SR</td>
+		</tr>
+		<tr>
+			<td>003</td>
+			<td>CCC</td>
+			<td>HR</td>
+		</tr>
+	</table></br>
+	<img src="hello-comic-style_53876-26585.png" alt=""></br>
+	<!-- imgholder -->
+	<img src="https://imgholder.ru/600x300/2196F3/ECEFF1.jpg&text=imgHolder&font=bebas&fz=36" alt=""></br>
+
+
+    <!-- 屬性 >> controls增加手動播放鈕；loop循環播放；autoplay自動撥放；如不會撥放再加muted-->
+	<video src="aaaa.mp4" controls loop autoplay muted></video></br>
+	<!-- 避免某寫裝置無法使用 -->
+	<video controls loop autoplay muted>
+		<source src="aaaa.mp4" type="video/mp4"> <!-- 來源 -->
+		<source src="aaaa.ogg" type="video/ogg"> <!-- 來源 -->
+	</video></br>
+
+    <audio src="123.mp3" controls loop ></audio>
+
+    <audio controls loop>
+    	<source src="" type="">
+    	<source src="" type="">
+    </audio>
+</body>
+</html>
