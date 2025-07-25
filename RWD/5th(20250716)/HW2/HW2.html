@@ -32,7 +32,12 @@
 			background-size: cover;
 			height: 60vh;
 			margin-top: 80px;
-		}
+		}  
+    .my{
+      width: 25px;
+      height: 25px;
+    }
+
 	</style>
 
 </head>
@@ -81,21 +86,55 @@
 			</div>
 		</div>
 	</div>
-	<div class="container p-2">
+	<div class="container pt-3">
 		<div class="row">
-			<div class="col">
-				<div class="card">空調
+			<div class="col-lg-4 col-sm-12 mt-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">空調
+							<span class="badge h5 bg-success">啟動
+							</span>
+						</h5>
+						<h6 class="card-title">目前溫度</h6>
+					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="card">燈光</div>
+			<div class="col-lg-4 col-sm-12 mt-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">燈光
+							<span class="spinner-border spinner-border-sm text-warning"></span>
+						</h5>
+						<h6 class="card-title mt-3">狀態</h6>
+					</div>
+				</div>
 			</div>
-			<div class="col">
-				<div class="card">門鎖</div>
+			<div class="col-lg-4 col-sm-12 mt-3">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">門鎖
+							<span class="badge h5 bg-secondary">已上鎖
+							</span>
+						</h5>
+						<h6 class="card-title">最後操作：5分鐘前</h6>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+		<form class="row mt-3">	
+
+				<h3>設備控制表單</h3>
+				
+
+					<div class="col form-group" aria-label=".form-select-lg example">選擇設備<br><select  class="form-select" aria-label=".form-select-lg example"><option>請選擇設備</option><option>空調</option><option>燈光</option><option>門鎖</option>
+					</select></div>
+					<div class="col form-group">控制值<input id="n" type="text" placeholder="如：開/25&#8451;" class="form-control" required></div>
+					<div class="col form-group"><input type="submit" value="送出" class="btn btn-success mt-4"></div>
+		</form>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+	</body>
+	</html>
