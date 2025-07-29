@@ -1,0 +1,17 @@
+表單ID:1FAIpQLSfQhTbpQlEQ9uCPt7GutqZbtkk3kZTP-atEQqCRbxgzBAXsOw-atEQqCRbxgzBAXsOw
+
+姓名寫入的對應欄位代號:424137104
+
+連絡電話寫入的對應欄位代號:1137795895
+
+留言事項寫入的對應欄位代號:693816075
+
+
+表單規則
+https://docs.google.com/forms/d/e/表單ID/formResponse?entry.id1=答案1&entry.id2=答案2&entry.id2=答案2
+
+https://docs.google.com/forms/d/e/1FAIpQLSfQhTbpQlEQ9uCPt7GutqZbtkk3kZTP-atEQqCRbxgzBAXsOw/formResponse?entry.424137104=abcd&entry.1137795895=123456@gmail.com&entry.693816075=你好
+
+
+**欄位代號 請找第二層中括號裡面的數字編號**
+
