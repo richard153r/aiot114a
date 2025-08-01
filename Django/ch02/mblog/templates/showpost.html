@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show post</title>
+</head>
+    {% load markdown_extras %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.body | convert_markdown | safe }}</p>
+    <p>{{ post.pub_date }}</p>
+    <a href="/">返回首頁</a>
+</body>
+</html>
