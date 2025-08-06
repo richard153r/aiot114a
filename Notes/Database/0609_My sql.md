@@ -335,10 +335,11 @@ select id, name from old_table;
 - HAVING 是針對 分組（GROUP BY）後的結果 進行篩選
 
 ```sql
-SELECT deptno, AVG(sal) AS avg_sal
-FROM emp
-GROUP BY deptno
-HAVING AVG(sal) > 20000;
+SELECT ...
+FROM ...
+WHERE 查詢條件 //可使用子查詢
+GROUP BY 分組設定
+HAVING 分組條件 //可使用子查詢
 ```
 
 ✅ WHERE vs HAVING 差異比較
@@ -347,3 +348,11 @@ HAVING AVG(sal) > 20000;
 |-|-|-|-|
 |`WHERE`|原始每筆資料|在分組 **前** 篩選 |`WHERE sal > 10000`|
 |`HAVING`|分組後的聚合資料|在分組 **後** 篩選| `HAVING AVG(sal) > 20000`|
+
+#### 比較運算子(子查詢)
+
+只要是設定的資料需要先執行查詢後才可以得到，就應該要使用子查詢
+
+子查詢敘述回傳的資料是用來與前面的資料執行判斷比較用的，所以最多只能回傳一筆紀錄，而且只能有一個欄位的資料
+
+---

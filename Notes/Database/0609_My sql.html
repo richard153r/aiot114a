@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>0609_My sql.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%9F%A5%E8%A9%A2%E6%95%98%E8%BF%B0%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%AA%9E%E6%B3%95">查詢敘述的基本語法</h1>
+<ul>
+<li>select 想要查詢欄位</li>
+<li>form 想要查詢表格</li>
+<li>wehre 查詢條件</li>
+<li>group by 分組設定</li>
+<li>havig 分組條件</li>
+<li>order by 排序設定</li>
+<li>limit 限制設定</li>
+</ul>
+<h2 id="%E4%BD%BF%E7%94%A8%E5%AD%90%E5%8F%A5%E9%A0%86%E5%BA%8F">使用子句順序</h2>
+<ol>
+<li>select 想要查詢欄位</li>
+<li>form 想要查詢表格</li>
+<li>wehre 查詢條件</li>
+<li>group by 分組設定</li>
+<li>havig 分組條件</li>
+<li>order by 排序設定</li>
+<li>limit 限制設定</li>
+</ol>
+<h2 id="%E6%8C%87%E5%AE%9A%E9%9C%80%E8%A6%81%E7%9A%84%E6%AC%84%E4%BD%8D">指定需要的欄位</h2>
+<blockquote>
+<p>selet 欄位名稱[,欄位名稱] form 表格名稱</p>
+<p>『*』 表示所有欄位
+『表格名稱』指定目前使用中的資料庫的表格名稱
+『,』有多個欄位需要隔開</p>
+</blockquote>
+<h2 id="%E6%95%B8%E5%AD%B8%E9%81%8B%E7%AE%97">數學運算</h2>
+<table>
+<thead>
+<tr>
+<th>優先順序</th>
+<th>運算子</th>
+<th>說明</th>
+<th>範例</th>
+<th>運算結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>%</td>
+<td>餘數</td>
+<td>7%3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>MOD</td>
+<td>餘數</td>
+<td>7 MOD 3</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>*</td>
+<td>乘法</td>
+<td>7 * 3</td>
+<td>21</td>
+</tr>
+<tr>
+<td>1</td>
+<td>/</td>
+<td>除法</td>
+<td>7/3</td>
+<td>2.333</td>
+</tr>
+<tr>
+<td>1</td>
+<td>DIV</td>
+<td>除(整數)</td>
+<td>7 DIV 3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>+</td>
+<td>加法</td>
+<td>7 + 3</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>-</td>
+<td>減法</td>
+<td>7-3</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>select 欄位名稱A*12,欄位名稱B+欄位名稱C</p>
+<p>from selet 欄位名稱[,欄位名稱] form 表格名稱</p>
+</blockquote>
+<h2 id="%E5%88%A5%E5%90%8D">別名</h2>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> {欄位|資料|運算式} [<span class="hljs-keyword">as</span>] [別名]
+<span class="hljs-keyword">from</span> 表格名稱;
+
+例:<span class="hljs-keyword">select</span> 欄位名稱A <span class="hljs-keyword">as</span> Fidlds;
+from 表格名稱;
+</div></code></pre>
+<h2 id="%E6%A2%9D%E4%BB%B6%E6%9F%A5%E8%A9%A2">條件查詢</h2>
+<blockquote>
+<p>select ... from ... where 查詢條件</p>
+</blockquote>
+<h3 id="%E6%AF%94%E8%BC%83%E9%81%8B%E7%AE%97%E5%AD%90">比較運算子</h3>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=</td>
+<td>等於</td>
+</tr>
+<tr>
+<td>&lt;=&gt;</td>
+<td>等於</td>
+</tr>
+<tr>
+<td>!=</td>
+<td>不等於</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小於</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小於等於</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大於</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大於等於</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E9%82%8F%E8%BC%AF%E9%81%8B%E7%AE%97%E5%AD%90">邏輯運算子</h3>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOT</td>
+<td>不是</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>而且</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>而且</td>
+</tr>
+<tr>
+<td>||</td>
+<td>或</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>或</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>互斥</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E5%85%B6%E4%BB%96%E6%A2%9D%E4%BB%B6%E9%81%8B%E7%AE%97">其他條件運算</h3>
+<table>
+<thead>
+<tr>
+<th>運算子</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>between...and...</td>
+<td>比較範圍</td>
+</tr>
+<tr>
+<td>in(...)</td>
+<td>比較成員</td>
+</tr>
+<tr>
+<td>is</td>
+<td>是...</td>
+</tr>
+<tr>
+<td>is not</td>
+<td>不是...</td>
+</tr>
+<tr>
+<td>like</td>
+<td>像...</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>『between...and...』用來執行一個指定範圍條件的設定</p>
+<p>『in(...)』使用在一組成員資料的比對條件設定</p>
+</blockquote>
+<hr>
+<h2 id="%E5%90%88%E4%BD%B5%E8%B3%87%E6%96%99%E5%BA%AB">合併資料庫</h2>
+<h3 id="1-%E5%9E%82%E7%9B%B4%E5%90%88%E4%BD%B5-unionunion-all">1. 垂直合併 <code>union/union all</code></h3>
+<p>用途：將兩個或多個 查詢結果上下合併（表結構相同），就像是把多張表或多筆結果接在一起。</p>
+<pre class="hljs"><code><div>語法：
+<span class="hljs-keyword">select</span> column1, column2 <span class="hljs-keyword">from</span> table1
+<span class="hljs-keyword">union</span>
+<span class="hljs-keyword">select</span> column1, column2 <span class="hljs-keyword">from</span> table2;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>合併方式</th>
+<th>是否去除重複</th>
+<th>是否排序</th>
+<th>效能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UNION</code></td>
+<td>✅是</td>
+<td>✅是</td>
+<td>較慢</td>
+</tr>
+<tr>
+<td><code>UNION ALL</code></td>
+<td>❌否</td>
+<td>❌否</td>
+<td>較快</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-%E6%B0%B4%E5%B9%B3%E5%90%88%E4%BD%B5-join-%E7%B3%BB%E5%88%97">2. 水平合併 <code>JOIN</code> 系列</h3>
+<p>用途：將兩張表 橫向合併（根據關聯欄位，如 ID），像是合併表格的欄位資料。</p>
+<h4 id="2-1-inner-join-%E5%8F%AA%E4%BF%9D%E7%95%99%E5%85%A9%E9%82%8A%E9%83%BD%E6%9C%89%E5%8C%B9%E9%85%8D%E8%B3%87%E6%96%99%E7%9A%84%E5%88%97">2-1. <code>INNER JOIN</code> 只保留『兩邊都有匹配資料』的列</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> table1
+<span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> table2 <span class="hljs-keyword">on</span> table1.id = table2.id;
+</div></code></pre>
+<h4 id="2-2-left-join-%E4%BF%9D%E7%95%99%E5%B7%A6%E9%82%8A%E8%A1%A8%E7%9A%84%E6%89%80%E6%9C%89%E8%B3%87%E6%96%99%E5%8F%B3%E9%82%8A%E6%B2%92%E6%9C%89%E7%9A%84%E8%A3%9C-null">2-2. <code>LEFT JOIN</code> 保留左邊表的『所有資料』，右邊沒有的補 null</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span>  table1
+<span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> table2 <span class="hljs-keyword">on</span> table1.id = table2.id;
+</div></code></pre>
+<h4 id="2-3-right-join-%E4%BF%9D%E7%95%99%E5%8F%B3%E9%82%8A%E8%A1%A8%E7%9A%84%E6%89%80%E6%9C%89%E8%B3%87%E6%96%99%E5%B7%A6%E9%82%8A%E6%B2%92%E6%9C%89%E7%9A%84%E8%A3%9C-null">2-3. <code>RIGHT JOIN</code> 保留右邊表的『所有資料』，左邊沒有的補 null</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> table1
+<span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> table2 <span class="hljs-keyword">on</span> table1.id = table2.id;
+</div></code></pre>
+<h3 id="3-%E7%89%B9%E6%AE%8A%E5%90%88%E4%BD%B5%E6%8A%80%E5%B7%A7">3. 特殊合併技巧</h3>
+<h4 id="3-1-%E5%AD%90%E6%9F%A5%E8%A9%A2%E5%90%88%E4%BD%B5">3-1. 子查詢合併</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">select</span> <span class="hljs-keyword">name</span>, 
+(<span class="hljs-keyword">select</span> dept_name <span class="hljs-keyword">from</span> departments <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = employees.dept_id) <span class="hljs-keyword">as</span> department
+<span class="hljs-keyword">from</span> employees;
+</div></code></pre>
+<h4 id="3-2-insert-into--select-%E2%9E%A1%EF%B8%8F-%E5%90%88%E4%BD%B5%E8%B3%87%E6%96%99%E9%80%B2%E4%B8%80%E5%80%8B%E8%A1%A8">3-2. INSERT INTO ... SELECT ➡️ 合併資料進一個表</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> new_table (<span class="hljs-keyword">id</span>, <span class="hljs-keyword">name</span>)
+<span class="hljs-keyword">select</span> <span class="hljs-keyword">id</span>, <span class="hljs-keyword">name</span> <span class="hljs-keyword">from</span> old_table;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>合併方式</th>
+<th>關鍵字</th>
+<th>用途</th>
+<th>是否支援</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>垂直合併</td>
+<td><code>UNION</code></td>
+<td>合併查詢結果（去重）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>垂直合併</td>
+<td><code>UNION ALL</code></td>
+<td>合併查詢結果（含重）</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>水平合併</td>
+<td><code>INNER JOIN</code></td>
+<td>關聯欄位皆存在</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>水平合併</td>
+<td><code>LEFT JOIN</code></td>
+<td>保留左表全部資料</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>水平合併</td>
+<td><code>RIGHT JOIN</code></td>
+<td>保留右表全部資料</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>水平合併</td>
+<td><code>FULL JOIN</code></td>
+<td>保留所有資料</td>
+<td>❌(用UNION模擬)</td>
+</tr>
+<tr>
+<td>特殊合併</td>
+<td>子查詢</td>
+<td>表中欄位動態對應查詢</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>特殊合併</td>
+<td><code>INSERT ... SELECT</code></td>
+<td>插入合併資料到表中</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p><img src="https://raw.githubusercontent.com/richard153r/pic/main/pic/A1.1.SQL_Joins圖解.jpg" alt="A1.1.SQL_Joins圖解"></p>
+<hr>
+<h2 id="%E9%81%8B%E7%AE%97%E6%98%AF%E8%88%87%E5%87%BD%E5%BC%8F">運算是與函式</h2>
+<h3 id="%E5%80%BC%E8%88%87%E9%81%8B%E7%AE%97%E5%BC%8F">值與運算式</h3>
+<ul>
+<li>數值
+<ul>
+<li>整數:沒有小數的數字</li>
+<li>小數:包含小數的數字</li>
+</ul>
+</li>
+<li>字串值</li>
+<li>日期與時間值
+<ul>
+<li>year 年</li>
+<li>quarter 季</li>
+<li>month 月</li>
+<li>day 日</li>
+<li>hour 時</li>
+<li>nimute 分</li>
+<li>second 秒</li>
+</ul>
+</li>
+<li>NULL值</li>
+</ul>
+<h3 id="%E5%87%BD%E5%BC%8F">函式</h3>
+<ul>
+<li>
+<p>字串函式</p>
+<table>
+<thead>
+<tr>
+<th>函數名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LOWER(字串)</code></td>
+<td>將字串轉換為小寫</td>
+</tr>
+<tr>
+<td><code>UPPER(字串)</code></td>
+<td>將字串轉換為大寫</td>
+</tr>
+<tr>
+<td><code>LPAD(字串1, 長度, 字串2)</code></td>
+<td>將字串1的長度擴展到指定的長度（左邊填充字串2）</td>
+</tr>
+<tr>
+<td><code>RPAD(字串1, 長度, 字串2)</code></td>
+<td>將字串1的長度擴展到指定的長度（右邊填充字串2）</td>
+</tr>
+<tr>
+<td><code>LTRIM(字串)</code></td>
+<td>刪除字串左邊的空格</td>
+</tr>
+<tr>
+<td><code>RTRIM(字串)</code></td>
+<td>刪除字串右邊的空格</td>
+</tr>
+<tr>
+<td><code>TRIM(字串)</code></td>
+<td>刪除字串兩邊的空格</td>
+</tr>
+<tr>
+<td><code>REPEAT(字串, 個數)</code></td>
+<td>將字串重複指定的次數</td>
+</tr>
+<tr>
+<td><code>REPLACE(字串1, 字串2, 字串3)</code></td>
+<td>將字串1中的所有字串2替換為字串3</td>
+</tr>
+<tr>
+<td><code>LEFT(字串, 長度)</code></td>
+<td>從字串的最左邊開始，截取指定長度的字串</td>
+</tr>
+<tr>
+<td><code>RIGHT(字串, 長度)</code></td>
+<td>從字串的最右邊開始，截取指定長度的字串</td>
+</tr>
+<tr>
+<td><code>SUBSTRING(字串, 位置)</code></td>
+<td>從字串的指定位置開始，截取到字串的結尾</td>
+</tr>
+<tr>
+<td><code>SUBSTRING(字串, 起始位置, 長度)</code></td>
+<td>從字串的指定位置開始，截取指定長度的字串</td>
+</tr>
+<tr>
+<td><code>CONCAT(字串1, 字串2, ...)</code></td>
+<td>將多個字串連接在一起，並返回一個新的字串</td>
+</tr>
+<tr>
+<td><code>CONCAT_WS(分隔符, 字串1, 字串2, ...)</code></td>
+<td>使用指定的分隔符將多個字串連接在一起</td>
+</tr>
+<tr>
+<td><code>length(字串)</code></td>
+<td>返回字串的字元數（即字串的長度，包含空格）</td>
+</tr>
+<tr>
+<td><code>char_length(字串)</code></td>
+<td>返回字串的字符長度（與 <code>length</code> 類似，但有些資料庫可能會處理多字節字符有區別）</td>
+</tr>
+<tr>
+<td><code>locate(子字串, 字串)</code></td>
+<td>返回子字串在字串中的首次出現位置（從 1 開始）</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>數學函式</p>
+<table>
+<thead>
+<tr>
+<th>函式名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>round(數字)</code></td>
+<td>將數字四捨五入至最接近的整數</td>
+</tr>
+<tr>
+<td><code>round(數字, 位數)</code></td>
+<td>將數字四捨五入到指定的小數位數</td>
+</tr>
+<tr>
+<td><code>ceil(數字)</code> / <code>ceiling(數字)</code></td>
+<td>將數字進位為最小的整數</td>
+</tr>
+<tr>
+<td><code>floor(數字)</code></td>
+<td>將數字捨去為最大的整數（向下取整）</td>
+</tr>
+<tr>
+<td><code>truncate(數字, 位數)</code></td>
+<td>去除數字的小數部分，僅保留指定小數位數的數字</td>
+</tr>
+<tr>
+<td><code>pi()</code></td>
+<td>返回圓周率 π 的值</td>
+</tr>
+<tr>
+<td><code>pow(數字1, 數字2)</code> / <code>power(數字1, 數字2)</code></td>
+<td>返回 <code>數字1</code> 的 <code>數字2</code> 次方</td>
+</tr>
+<tr>
+<td><code>rand()</code></td>
+<td>生成一個介於 0 和 1 之間的隨機數字</td>
+</tr>
+<tr>
+<td><code>sqrt(數字)</code></td>
+<td>返回數字的平方根</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>日期時間函式</p>
+<table>
+<thead>
+<tr>
+<th>函式名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>now()</code></td>
+<td>返回當前的日期和時間</td>
+</tr>
+<tr>
+<td><code>curdate()</code></td>
+<td>返回當前的日期（不包含時間）</td>
+</tr>
+<tr>
+<td><code>curtime()</code></td>
+<td>返回當前的時間（不包含日期）</td>
+</tr>
+<tr>
+<td><code>year(日期)</code></td>
+<td>提取日期中的年份部分</td>
+</tr>
+<tr>
+<td><code>month(日期)</code>提取日期中的月份部分</td>
+<td></td>
+</tr>
+<tr>
+<td><code>day(日期)</code></td>
+<td>提取日期中的日部分</td>
+</tr>
+<tr>
+<td><code>monthname(日期)</code></td>
+<td>返回日期所對應的月份名稱</td>
+</tr>
+<tr>
+<td><code>dayname(日期)</code></td>
+<td>返回日期所對應的星期幾名稱</td>
+</tr>
+<tr>
+<td><code>datediff(d1, d2)</code></td>
+<td>返回兩個日期之間的差值，單位為天數</td>
+</tr>
+<tr>
+<td><code>dayofweek(日期)</code></td>
+<td>返回日期是星期幾，1=星期日，7=星期六</td>
+</tr>
+<tr>
+<td><code>dayofyear(日期)</code></td>
+<td>返回日期是當年的第幾天</td>
+</tr>
+<tr>
+<td><code>quarter(日期)</code></td>
+<td>返回日期所對應的季度，1 = 第一季度，2 = 第二季度</td>
+</tr>
+<tr>
+<td><code>extract(單位 from 日期/時間)</code></td>
+<td>從日期或時間中提取指定單位的數值</td>
+</tr>
+<tr>
+<td><code>hour(時間)</code></td>
+<td>提取時間中的小時部分</td>
+</tr>
+<tr>
+<td><code>minute(時間)</code></td>
+<td>提取時間中的分鐘部分</td>
+</tr>
+<tr>
+<td><code>second(時間)</code></td>
+<td>提取時間中的秒數部分</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>流程控制函式</p>
+<table>
+<thead>
+<tr>
+<th>函數/語法</th>
+<th>功能說明</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>if()</code></td>
+<td>單一條件判斷，兩個選項的流程控制</td>
+<td>判斷「是/否」、「真/假」的簡單邏輯</td>
+</tr>
+<tr>
+<td><code>case</code></td>
+<td>多重條件判斷，類似多層 if-</td>
+<td>複雜多條件的流程判斷</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>if(條件, 運算式1, 運算式2):如果「條件」成立（為真），就回傳「運算式1」；否則回傳「運算式2」</p>
+</blockquote>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> ename,
+    <span class="hljs-keyword">IF</span>(sal &gt; <span class="hljs-number">50000</span>, <span class="hljs-string">'高薪'</span>, <span class="hljs-string">'低薪'</span>) <span class="hljs-keyword">AS</span> 薪資等級
+<span class="hljs-keyword">FROM</span> employees;
+</div></code></pre>
+<blockquote>
+<p>CASE 表達式:根據多個條件逐一判斷，符合哪個條件就回傳對應的結果，類似多重 if-else</p>
+</blockquote>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">SELECT</span> ename,
+     <span class="hljs-keyword">CASE</span> 
+       <span class="hljs-keyword">WHEN</span> sal &gt; <span class="hljs-number">100000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'非常高薪'</span>
+       <span class="hljs-keyword">WHEN</span> sal &gt; <span class="hljs-number">50000</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'高薪'</span>
+       <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'低薪'</span>
+     <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> 薪資等級
+  <span class="hljs-keyword">FROM</span> employees;
+</div></code></pre>
+</li>
+<li>
+<p>其他函式</p>
+<table>
+<thead>
+<tr>
+<th>函數名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ifnull(參數, 運算式)</code></td>
+<td>如果「參數」是 <code>NULL</code>，則回傳「運算式」，否則回傳「參數」本身。常用來替代 NULL 值</td>
+</tr>
+<tr>
+<td><code>isnull(參數)</code></td>
+<td>判斷「參數」是否為 <code>NULL</code>，是則回傳 <code>1</code>（真），否則回傳 <code>0</code>（假）</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<hr>
+<h2 id="%E7%BE%A4%E7%B5%84%E6%9F%A5%E8%A9%A2">群組查詢</h2>
+<h3 id="%E7%BE%A4%E7%B5%84%E5%87%BD%E5%BC%8F">群組函式</h3>
+<table>
+<thead>
+<tr>
+<th>函數名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>max()</td>
+<td>找出欄位中的最大值</td>
+</tr>
+<tr>
+<td>min()</td>
+<td>找出欄位中的最小值</td>
+</tr>
+<tr>
+<td>sum()</td>
+<td>計算欄位數值的總和</td>
+</tr>
+<tr>
+<td>avg()</td>
+<td>計算欄位數值的平均值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="groupconcat%E5%87%BD%E5%BC%8F">group_concat函式</h3>
+<ul>
+<li><code>group_concat()</code> 是一個聚合函式，用來<strong>將同一組（GROUP BY）中多筆資的欄位值串接成一個字串</strong>，常用於將多筆資料合併成清單顯示。
+<ul>
+<li>通常會以逗號 , 分隔不同的值，也可自訂分隔符號。</li>
+<li>可以使用 ORDER BY 子句，決定串接時的排序。</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 部門編號,<span class="hljs-keyword">GROUP_CONCAT</span>(員工姓名 <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> 員工姓名 SEPARATOR <span class="hljs-string">','</span>) <span class="hljs-keyword">AS</span> 員工名單
+<span class="hljs-keyword">FROM</span> employees
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 部門編號;
+</div></code></pre>
+<ul>
+<li>ORDER BY 員工姓名：串接前先依姓名排序</li>
+<li>SEPARATOR ', '：指定用逗號+空格分隔</li>
+</ul>
+<h3 id="group-by-%E8%88%87-having-%E5%AD%90%E5%8F%A5">group by 與 having 子句</h3>
+<h4 id="group-by-%E5%AD%90%E5%8F%A5">group by 子句</h4>
+<ul>
+<li>
+<p>GROUP BY 是用來 依指定欄位分組，把同類型資料歸類在一起。</p>
+</li>
+<li>
+<p>常用來配合聚合函數（SUM、COUNT、AVG 等）做統計。</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> 欄位<span class="hljs-number">1</span>, 聚合函數(欄位<span class="hljs-number">2</span>)
+<span class="hljs-keyword">FROM</span> 表名
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> 欄位<span class="hljs-number">1</span>;
+</div></code></pre>
+</li>
+<li>
+<p>非聚合欄位必須在 GROUP BY 中出現。</p>
+</li>
+<li>
+<p>GROUP BY 不會排序，排序要用 ORDER BY。</p>
+</li>
+<li>
+<p>可以分多欄位組合分組：GROUP BY 欄位1, 欄位2。</p>
+</li>
+</ul>
+<h4 id="having-%E5%AD%90%E5%8F%A5">having 子句</h4>
+<ul>
+<li>WHERE 是針對 原始資料 進行篩選</li>
+<li>HAVING 是針對 分組（GROUP BY）後的結果 進行篩選</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> deptno, <span class="hljs-keyword">AVG</span>(sal) <span class="hljs-keyword">AS</span> avg_sal
+<span class="hljs-keyword">FROM</span> emp
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> deptno
+<span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">AVG</span>(sal) &gt; <span class="hljs-number">20000</span>;
+</div></code></pre>
+<p>✅ WHERE vs HAVING 差異比較</p>
+<table>
+<thead>
+<tr>
+<th>用法</th>
+<th>篩選對象</th>
+<th>什麼時候執行</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WHERE</code></td>
+<td>原始每筆資料</td>
+<td>在分組 <strong>前</strong> 篩選</td>
+<td><code>WHERE sal &gt; 10000</code></td>
+</tr>
+<tr>
+<td><code>HAVING</code></td>
+<td>分組後的聚合資料</td>
+<td>在分組 <strong>後</strong> 篩選</td>
+<td><code>HAVING AVG(sal) &gt; 20000</code></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
