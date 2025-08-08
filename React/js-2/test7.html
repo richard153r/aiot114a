@@ -12,6 +12,20 @@
 			background-size: cover;
 		}
 	</style>
+	<script>
+		let ans = prompt("請輸入1~10：")
+		while(ans != 8){
+			if(ans > 8 && ans <= 10){
+				alert("猜大了")
+			}else if(ans > 10){
+				alert("阿不是說1~10")
+			}else{
+				alert("猜小了")
+			}
+			ans = prompt("請輸入1~10：")
+		}
+		alert("答對囉!")
+	</script>
 </head>
 
 <body>

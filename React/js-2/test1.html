@@ -21,7 +21,14 @@
 			width:35%;
 		}
 	</style>
-
+	<script>
+		let AA,BB,CC,DD; //AA-身高 BB-體重 CC-BMI DD-通知
+		AA = prompt("請輸入身高(公分)")
+		BB = prompt("請輸入體重(公斤)")
+		CC = Math.floor(BB/Math.pow((AA/100),2))
+		DD = (CC>24)?"要留意囉！需要減重":"多注意飲食均衡！"
+		alert("身高："+AA+"公分\n體重："+BB+"公斤\nBMI值："+CC+"\n建議"+DD)
+	</script>
 </head>
 <body>
 <!-- 

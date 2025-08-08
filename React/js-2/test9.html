@@ -12,9 +12,18 @@
 			background-size:90%;
 		}
 	</style>
+	<script>
+		let s,n;
+		function aaa(){
+			s=["hello","你好","哈囉","123456","987654"]
+			n=Math.floor(Math.random()*5)
+			alert(s[n])
+		}
+		// aaa()
+	</script>
 </head>
 
-<body>
+<body onload="aaa()">
 <!-- 
 我們可以使用 function 關鍵字來宣告函式 語法如下:
 function 自訂名稱 (){
@@ -25,6 +34,6 @@ function 自訂名稱 (){
 練習一:請設計一個當頁面載入完成後出現隨機問候語
 練習二:請設計一個當頁面按鈕按下後執行重新載入目前這個頁面的函式
 -->
-<button>reload</button>
+<button onclick="aaa()">reload</button>
 </body>
 </html>

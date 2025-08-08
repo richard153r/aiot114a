@@ -17,6 +17,18 @@
 			color:#2A2DAD;
 		}
 	</style>
+	<script>
+		let Year=prompt("請輸入出生西元年"),age,k;
+		age=2025-Year;
+		k=20-age;
+		if(age>=20){
+			alert("可以投票")
+		}else if(age>=18){
+			alert("可以公投")
+		}else{
+			alert("目前"+age+"歲\n還需要等"+k+"年才滿20歲")
+		}
+	</script>
 
 </head>
 
