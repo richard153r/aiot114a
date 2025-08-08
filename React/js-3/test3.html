@@ -4,7 +4,17 @@
 	<meta charset="utf-8">
 	<title>Windows物件基本認識-setTimeout + clearTimeout</title>
 	<link rel="stylesheet" href="css/s3.css">
+	<script>
+		let ct=0
+		function showT(){
+			window.document.write("<p>"+ct+"good</p>")
+			ct=setTimeout(showT,1000)
+			if(ct>=20){
+				clearTimeout(ct)
+			}
+		}
+	</script>
 </head>
-<body>
+<body onload="showT()">
 </body>
 </html>

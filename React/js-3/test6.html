@@ -4,6 +4,21 @@
 	<meta charset="utf-8">
 	<title>Windows物件基本認識-document物件</title>
 	<link rel="stylesheet" href="css/s6.css">
+	<script>
+		function show(){
+			let divInfo=document.getElementById('dataArea')
+			if(divInfo == ""){
+				alert("沒有輸入")
+			}else{
+				alert('你輸入的是：'+ divInfo.value)
+			}
+		}
+
+		function show2(){
+			let item=document.getElementsByName('ck')
+			alert(item.length)
+		}
+	</script>
 </head>
 
 <body>
@@ -37,11 +52,11 @@
 
 	<p>練習一:請查詢網頁元素內容並顯示在訊息視窗</p>
 
-	<div id="dataArea">WELCOME Javascript WORLD</div><br/>
-	<input type="button" value="左鍵一下抓取ID元素內容">
+	<input id="dataArea"><br/>
+	<input type="button" value="左鍵一下抓取ID元素內容" onclick="show()">
 	<br/>
 
-	<p>練習二:請查詢網頁元素內容並顯示在訊息視窗</p>
+	<p>練習二:請查詢網頁元素數量內容並顯示在訊息視窗</p>
 
 	<div id="content">
 		<input type="checkbox" name="ck" value="有氧健身">有氧健身
@@ -50,7 +65,7 @@
 		<input type="checkbox" name="ck" value="登山露營">登山露營
 		<input type="checkbox" name="ck" value="下棋競賽">下棋競賽
 		<input type="checkbox" name="ck" value="音樂製作">音樂製作<br/>
-		<input type="button" value="查詢元素name屬性內容"><br>
+		<input type="button" value="查詢元素name屬性內容" onclick="show2()"><br>
 	</div>
 
 </body>

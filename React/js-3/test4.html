@@ -5,9 +5,16 @@
 	<title>Windows物件基本認識-事件</title>
 	<link rel="stylesheet" href="css/s4.css">
 </head>
+<script>
+	function go(){
+		window.document.write("javascript is good")
+	}
+	function cf(){
+		window.open('http://www.gogoro.com/tw/','cf','width=800,height=900,top=50,left=300')
+	}
+</script>
 
-
-<body>
+<body onload="cf()" onresize="go()">
 	<ul>
 		<li>onload:頁面載入</li>
 		<li>onunload:頁面退出</li>

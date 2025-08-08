@@ -4,11 +4,19 @@
 	<meta charset="utf-8">
 	<title>Windows物件基本認識-document物件-全選/全不選功能實現</title>
 	<link rel="stylesheet" href="css/s7.css">
+	<script>
+		function check(YorN){
+			let item=document.getElementsByName('ck')
+			for(let i=0;i<item.length;i++){
+				item[i].checked=YorN
+			}
+		}
+	</script>
 </head>
 
 <body>
-	<input type="button" name="button" id="button" value="全選" onClick="">
-	<input type="button" name="button" id="button" value="通通不要" onClick="">
+	<input type="button" name="button" id="button" value="全選" onClick="check(1)">
+	<input type="button" name="button" id="button" value="通通不要" onClick="check(0)">
 	<hr>
 	<input type="checkbox" name="ck" value="跑步">跑步
 	<input type="checkbox" name="ck" value="籃球">籃球

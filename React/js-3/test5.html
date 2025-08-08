@@ -5,10 +5,20 @@
 	<title>Windows物件基本認識-history物件與location物件</title>
 	<link rel="stylesheet" href="css/s5.css">
 </head>
-
+<script>
+	function go(){
+		window.location.href="https://www.gogoro.com/tw/"
+	}
+	function back(){
+		window.history.back()
+	}
+	function next(){
+		window.history.forward()
+	}
+</script>
 <body>
-	<input type="button" name="button" id="button" value="往前" onClick="">
-	<input type="button" name="button" id="button" value="往後" onClick="">
-	<input type="button" name="button" id="button" value="前往網站" onClick="">
+	<input type="button" name="button" id="button" value="上一頁" onClick="back()">
+	<input type="button" name="button" id="button" value="下一頁" onClick="next()">
+	<input type="button" name="button" id="button" value="前往網站" onClick="go()">
 </body>
 </html>
