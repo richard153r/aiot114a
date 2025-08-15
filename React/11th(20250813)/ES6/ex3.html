@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>計數練習3-箭頭函式</title>
+</head>
+<body>
+	<button id="add">add</button> <button id="minus">minus</button> <button id="reset">reset</button>
+	<form action="" name="myForm"><input type="text" name="info" id="info"></form>
+	<script>
+		let count=0;
+		const infoV=document.getElementById('info')
+		const addBtn=document.getElementById('add')
+		const minusBtn=document.getElementById('minus')
+		const display=()=>{myForm.info.value=count}
+		const resetBtn=document.getElementById('reset')
+		myForm.info.value=count
+		addBtn.addEventListener("click",()=>{
+			count+=1
+			// infoV.value=count
+			display()
+		})
+		minusBtn.addEventListener("click",()=>{
+			count-=1
+			// infoV.value=count
+			display()
+		})
+		resetBtn.addEventListener("click",()=>{
+			count=0
+			// infoV.value=count
+			display()
+		})
+
+		const funtest=()=>{
+			console.log("Arrow")
+		}
+		console.log(funtest)
+		// alert(funtest)
+
+		const tt=(a,b)=>{
+			return a+b;
+		}
+		console.log(tt(9,2))
+
+		// 基本架構
+		// const 函數名稱=(參數)=>{執行功能}
+
+
+		// 只有一個參數，可以省略括弧
+		const aa=r=>r*r
+
+		// 只有一行return<可以省略與return
+		// const aa = name => `hello,${name}`;
+
+		// 多行敘述式與邏輯，須完整呈現括弧與return
+		const mm=(n,m)=>{
+			const ans=m*n;
+			return ans;
+		}
+
+		//this只能呼叫外層
+		function person(){
+			this.age=0;
+			setInterval(()=>{
+				this.age++;
+				console.log(this.age);
+				},1000)
+		}
+		// person()
+		const p=new person()
+
+		// 箭頭函數不能作為建構函數
+		const foot=()=>{console.log('Welcome')}
+		const q=new foot()
+		console.log(q)
+	</script>
+</body>
+</html>

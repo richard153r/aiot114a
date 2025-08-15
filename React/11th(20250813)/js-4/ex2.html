@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>關閉目前視窗</title>
+	<style>
+		*{
+			margin: 0;
+		}
+		body{
+			text-align: center;
+		}
+		
+	</style>
+</head>
+<body>
+	<img src="images/q.jpg" alt="">
+	<script>
+		setTimeout(q,2000) // 設定 2 秒後執行函式 q()
+		function q(){ // 定義 q() 函式
+			let answer=confirm("數學運算式((2*3)+6-5答案為7\n正確請按確定，錯誤請按取消")  // 顯示一個確認框
+			if(answer== true){  // 如果使用者按下「確定」（表示答對）
+				document.write("<img src='images/ok.jpg' alt='' style='display:block;margin:0px auto'>") // 顯示一張圖片（答對圖），圖片置中顯示
+			}else{  // 使用者按下「取消」（表示答錯）
+				alert("您答錯了") // 顯示錯誤提示訊息
+				window.close()  // 嘗試關閉當前視窗
+			}
+		}
+	</script>
+</body>
+</html>
+<!-- ....設計讓瀏覽者回答問題...
+頁面載入後2秒出現確認視窗 讓瀏覽者回答數學運算式((2*3)+6)-5 答案為7 
+若答錯!則出現訊息並關閉目前視窗 否則在頁面中呈現指定圖檔ok.jpg ! -->

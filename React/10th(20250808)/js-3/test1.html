@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>Windows物件基本認識-alert+confirm+prompt</title>
+	<link rel="stylesheet" href="css/s1.css">
+</head>
+<script>
+	
+</script>
+<body>
+	<script>
+		let sex=prompt("請出入性別代號 (1:女生 2:男生)")
+		if(sex=="1"){
+			if(confirm("今天有吃早餐嗎?")){
+				alert("很棒，請保持下去")
+			}else{
+				alert("請記得吃早餐")
+			}
+		}else{
+			if(confirm("今日有看電影了嗎?")){
+				alert("很棒")
+			}else{
+				alert("請記得今天行程")
+			}
+		}
+	</script>
+</body>
+</html>
