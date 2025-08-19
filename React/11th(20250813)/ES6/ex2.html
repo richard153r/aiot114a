@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>計數練習2-let、const</title>
+</head>
+<body>
+	<button id="add">add</button> <button id="minus">minus</button> <button id="reset">reset</button>
+	<form action="" name="myForm"><input type="text" name="info" id="info"></form>
+	<script>
+		let count=0;
+		const infoV=document.getElementById('info')
+		const addBtn=document.getElementById('add')
+		const minusBtn=document.getElementById('minus')
+		const resetBtn=document.getElementById('reset')
+		myForm.info.value=count
+		addBtn.addEventListener("click",function(){
+			count+=1
+			// infoV.value=count
+			myForm.info.value=count
+		})
+		minusBtn.addEventListener("click",function(){
+			count-=1
+			// infoV.value=count
+			myForm.info.value=count
+		})
+		resetBtn.addEventListener("click",function(){
+			count=0
+			// infoV.value=count
+			myForm.info.value=count
+		})
+
+	</script>
+</body>
+</html>

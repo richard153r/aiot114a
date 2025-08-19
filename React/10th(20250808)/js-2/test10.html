@@ -1,0 +1,79 @@
+﻿<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>-函式自訂與基本應用-2</title>
+	<style>
+		body{
+			background-image: url("images/p10.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+		form{
+			display: block;
+			width:200px;
+			height: 40px;
+			line-height: 50px;
+			margin:50px auto;
+		}
+		form input{
+			height: inherit;
+			border-radius:20px;
+			border:1px solid darkgreen;
+			text-align: center;
+		}
+	</style>
+	<script>
+		// 作法1
+		function newT1(){
+			let DD = new Date()
+			let TT = DD.getHours()+":"+DD.getMinutes()+":"+DD.getSeconds()
+			my.show.value=TT
+		}
+
+
+	</script>
+</head>
+
+<body>
+<!-- 
+
+我們可以使用 function 關鍵字來宣告函式 語法如下:
+
+
+function 自訂名稱 (){
+
+函式主要執行程式碼
+
+
+} 
+
+練習三:請自行建立一個函式呈現系統時間 顯示在頁面上
+-->
+<form action="" name="my"><input type="text" name="show" onmouseover="SSS()" onmouseout="newT2()"></form> <!-- 滑鼠滑過停止/開始 -->
+<script>
+	// 作法2
+	let TTT;
+	function newT2(){
+		let DD = new Date(),clockTime;
+		if(DD.getMinutes()<10){
+			clockTime = DD.getHours()+":0"+DD.getMinutes()+":"+DD.getSeconds()
+		}else if(DD.getSeconds()<10){
+			clockTime = DD.getHours()+":"+DD.getMinutes()+":0"+DD.getSeconds()
+		}else{
+			clockTime = DD.getHours()+":"+DD.getMinutes()+":"+DD.getSeconds()
+		}
+		my.show.value=clockTime
+		TTT = setTimeout(newT2,500) // 延遲執行
+	}
+	function SSS(){
+		clearTimeout(TTT)
+	}
+
+	setTimeout("newT2()",500) // 延遲執行
+
+</script>
+</body>
+</html>

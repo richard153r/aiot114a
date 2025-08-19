@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>計數練習1-基本宣告</title>
+</head>
+<body>
+	<button id="add">add</button> <button id="minus">minus</button> <button id="reset">reset</button>
+	<form action="" name="myForm"><input type="text" name="info" id='info'></form>
+	<script>
+		var count=0;
+		var infoV=document.getElementById('info')
+		var addBtn=document.getElementById('add')
+		var minusBtn=document.getElementById('minus')
+		var resetBtn=document.getElementById('reset')
+		myForm.info.value=count
+		addBtn.addEventListener("click",function(){
+			count+=1
+			infoV.value=count
+		})
+		minusBtn.addEventListener("click",function(){
+			count-=1
+			infoV.value=count
+		})
+		resetBtn.addEventListener("click",function(){
+			count=0
+			infoV.value=count
+		})
+
+	</script>
+</body>
+</html>

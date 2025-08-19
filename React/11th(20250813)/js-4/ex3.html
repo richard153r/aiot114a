@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>跳轉到其他頁面</title>
+	<style>
+		*{
+			margin: 0;
+		}
+		body{
+			background-color: #000;
+			text-align: center;
+		}
+		h3{
+			color: cyan;
+		}
+	</style>
+	<script>
+		// 寫法1
+		// setTimeout(go,10000)
+		// function go(){
+		// 	location.href="ex1.html"
+		// }
+
+		// 寫法2
+		setTimeout(cd,1000) // 在網頁載入後，等待 1 秒（1000 毫秒）後執行 cd() 函式（開始倒數）
+
+		let jump=10; // 設定初始倒數秒數為 10 秒
+		let clertV = null; // 宣告一個變數用來儲存計時器編號
+
+		function cd(){ // 每次執行時，jump 減 1，並將剩餘秒數 ct 存起來
+			let ct=jump--
+			let showTxt=document.getElementById('y').innerHTML="本頁將在"+ct+"秒後跳轉至其他頁面" // 將倒數訊息顯示在 id="y" 的元素中
+			// alert(showTxt)
+
+			if(ct==0){  // 如果倒數已經到 0，執行跳轉
+				window.location.href="ex1.html" // 跳轉到 ex1.html 頁面
+				clearTimeout(clertV) // 清除計時器
+			}else{
+				clertV = setTimeout(cd, 1000);  // 再次設定計時器，1秒後繼續倒數
+
+			}
+		}
+	</script>
+</head>
+<body>
+	<img src="images/tt.gif" alt="">
+	<h3 id="y">本頁將在10秒後跳轉至其他頁面</h3>
+</body>
+</html>
+<!-- ....設計當瀏覽者瀏覽超過10秒則跳轉至其他頁面 -->

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>解構(destructuring)</title>
+</head>
+<body>
+	<script>
+		// 基本語法
+		const arr=[1,2,3];
+		const [a,b,c]=arr;
+		console.log(a)
+		console.log(b)
+		console.log(c)
+
+		// 跳過變數名稱等元素
+		const[first,,third]=[10,20,30];
+		console.log(third)
+
+		//交換變數
+		let x=1,y=3;
+		[x,y]=[y,x]
+		console.log("x="+x);console.log("y="+y)
+
+		// 物件解構
+		const person={
+			name:"john",
+			age:25
+		};
+		const {name,age}=person;
+		console.log("name="+name);
+		console.log("age="+age);
+
+		// 變換變數名稱
+		const{name:user,age:userAge}=person;
+		console.log("name2="+user);
+		console.log("age2="+userAge)
+
+		// 函數中進行結構
+		function gr({name,age}){
+			console.log('welcome：'+name+'\n你的年紀是：'+age)
+		}
+		const aaa={name:"Ken",age:40}
+		gr(aaa)
+
+	</script>
+</body>
+</html>
+<!-- 
+可用對應形式來解構Objectc或Array
+可用於函式的參數
+較常用在屬性很多的物件上，使用API串接，提取JSON資料時相當方便
+ -->

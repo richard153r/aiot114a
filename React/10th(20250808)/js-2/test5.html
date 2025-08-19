@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+	<meta charset="utf-8">
+	<title>綜合練習</title>
+	<style>
+		body{
+			background-image: url("images/p5.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+	</style>
+	<script>
+		alert("Welcome")
+		let jjj = prompt("請輸入代號(1:Apple 2:Orange 3:Banana)")
+		//let aaa=(jjj > 3)?alert('你輸入數值錯誤'):'你的將顯示在頁面上'
+		console.log(typeof(jjj))
+		if (jjj == 1){
+			document.write("<h1>你選擇的是 <span style=color:red>1-Apple</span></h1>") //可以加上html標籤
+		}else if(jjj == 2){
+			document.write("你選擇的是 2-Orange")
+		}else if(jjj == 3){
+			document.write("你選擇的是 3-Banana")
+		}else{
+			alert('你輸入數值錯誤\n請重新輸入')
+			location.href="test5.html"
+		}
+	</script>
+</head>
+
+<body>
+<!--請設計當進入頁面時開啟一個歡迎訊息
+	接著設計輸入視窗 當使用者輸入水果代號(1:Apple 2:Orange 3:Banana) 可以在頁面中出現水果名稱-->
+</body>
+</html>
