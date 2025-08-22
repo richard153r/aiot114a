@@ -1,51 +1,75 @@
 ﻿<!doctype html>
 <html lang="zh-Hant-TW">
 <head>
-	<meta charset="utf-8">
-	<title>Windows物件基本認識-document物件-不同選擇需求切換實現</title>
-	<link rel="stylesheet" href="css/s8.css">
+  <meta charset="utf-8">
+  <title>Windows物件基本認識-document物件-不同選擇需求切換實現</title>
+  <link rel="stylesheet" href="css/s8.css">
 </head>
 <script>
-	function CCC(YorN){
-		let item=document.getElementsByName('ck')
-		for(let i=0;i<item.length;i++){
-			item[i].checked=YorN
-		}
-		function WWW(YorN){
-			let item=document.getElementsByName('ck2')
-			for(let i=0;i<item.length;i++){
-				item[i].checked=YorN
-			}
-			function show(YorN){
-				let item=document.getElementsByTagName('p')
-				for(let i=0;i<item.length;i++){
-					item[i].hidden=YorN
-				}
-			}
+  // 切換電腦課程
+  function CCC() {
+    let items = document.getElementsByName('ck');
+    let allChecked = true;
+    for (let i = 0; i < items.length; i++) {
+      if (!items[i].querySelector('input').checked) {
+        allChecked = false;
+        break;
+      }
+    }
+    for (let i = 0; i < items.length; i++) {
+      items[i].querySelector('input').checked = !allChecked;
+    }
+  }
 
+  // 切換生活休閒
+  function WWW() {
+    let items = document.getElementsByName('ck2');
+    let allChecked = true;
+    for (let i = 0; i < items.length; i++) {
+      if (!items[i].querySelector('input').checked) {
+        allChecked = false;
+        break;
+      }
+    }
+    for (let i = 0; i < items.length; i++) {
+      items[i].querySelector('input').checked = !allChecked;
+    }
+  }
 
-		}
-	</script>
+  // 全部清除
+  function clearAll() {
+    let allItems = document.querySelectorAll('p input[type="checkbox"]');
+    allItems.forEach(input => input.checked = false);
+  }
 
-	<body>
-		<button onClick="CCC(1),WWW(0)">電腦相關課程</button>
-		<button onClick="WWW(1),CCC(0)">生活休閒</button>
-		<button onClick="show(0)">顯示全部</button>
+  // 全部選取
+  function selectAll() {
+    let allItems = document.querySelectorAll('p input[type="checkbox"]');
+    allItems.forEach(input => input.checked = true);
+  }
+</script>
 
-		<hr>
-		<p name="ck2"><input type="checkbox" value="跑步">跑步</p>
-		<p name="ck2"><input type="checkbox" value="籃球">籃球</p>
-		<p name="ck2"><input type="checkbox" value="游泳">游泳</p>
-		<p name="ck2"><input type="checkbox" value="登山">登山</p>
-		<p name="ck2"><input type="checkbox" value="射擊">射擊</p>
-		<p name="ck2"><input type="checkbox" value="烹飪">烹飪</p>
-		<p name="ck2"><input type="checkbox" value="健身">健身</p>
-		<p name="ck2"><input type="checkbox" value="單車">單車</p>
-		<p name="ck2"><input type="checkbox" value="插花">插花</p>
-		<p name="ck2"><input type="checkbox" value="設計">設計</p>
-		<p name="ck"><input type="checkbox" value="美工繪圖">美工繪圖</p>
-		<p name="ck"><input type="checkbox" value="室內設計">室內設計</p>
-		<p name="ck"><input type="checkbox" value="網頁特效">網頁特效</p>
-		<p name="ck"><input type="checkbox" value="影音剪輯">影音剪輯</p>
-	</body>
-	</html>
+<body>
+  <button onClick="CCC()">電腦相關課程</button>
+  <button onClick="WWW()">生活休閒</button>
+  <button onClick="selectAll()">全部選取</button>
+  <button onClick="clearAll()">全部清除</button>
+
+  <hr>
+  <p name="ck2"><input type="checkbox" value="跑步">跑步</p>
+  <p name="ck2"><input type="checkbox" value="籃球">籃球</p>
+  <p name="ck2"><input type="checkbox" value="游泳">游泳</p>
+  <p name="ck2"><input type="checkbox" value="登山">登山</p>
+  <p name="ck2"><input type="checkbox" value="射擊">射擊</p>
+  <p name="ck2"><input type="checkbox" value="烹飪">烹飪</p>
+  <p name="ck2"><input type="checkbox" value="健身">健身</p>
+  <p name="ck2"><input type="checkbox" value="單車">單車</p>
+  <p name="ck2"><input type="checkbox" value="插花">插花</p>
+  <p name="ck2"><input type="checkbox" value="設計">設計</p>
+
+  <p name="ck"><input type="checkbox" value="美工繪圖">美工繪圖</p>
+  <p name="ck"><input type="checkbox" value="室內設計">室內設計</p>
+  <p name="ck"><input type="checkbox" value="網頁特效">網頁特效</p>
+  <p name="ck"><input type="checkbox" value="影音剪輯">影音剪輯</p>
+</body>
+</html>

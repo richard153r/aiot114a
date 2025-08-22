@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<style>
+	#area{
+		width: 60%;
+		margin: 50px auto;
+		text-align: center;
+	}
+	#area .show{
+		/* background-color: cyan; */
+		width: 28%;
+		display: inline-block;
+		margin: 20px 2.5%;
+	}
+	#area ul{
+		list-style: none;
+		padding: 0px;
+		/* text-align: center; */
+	}
+	#area ul li p{
+		font-size: 1.3em;
+		border-bottom: 1px dashed lightgray;
+		margin-top: 0.85em;
+		color: cadetblue;
+	}
+	
+	#area ul li img{
+		width: 80%;
+	}
+	#area ul li small{
+		color: darkgreen;
+		display: block;
+		font-size: 0.65em;
+		margin-bottom: 10px;
+	}
+
+
+</style>
+<body>
+	<div id="area"></div>
+
+	<script type="text/babel">
+		function Booklist(){
+			const books=[
+			{title:'Html認識',author:'apple',img:'IMG/book1.png'},
+			{title:'旅遊通識',author:'banana',img:'IMG/book2.png'},
+			{title:'攝影秘訣',author:'cat',img:'IMG/book3.png'},
+			{title:'Html認識',author:'apple',img:'IMG/book1.png'},
+			{title:'旅遊通識',author:'banana',img:'IMG/book2.png'},
+			{title:'攝影秘訣',author:'cat',img:'IMG/book3.png'},
+			{title:'Html認識',author:'apple',img:'IMG/book1.png'},
+			{title:'旅遊通識',author:'banana',img:'IMG/book2.png'},
+			{title:'攝影秘訣',author:'cat',img:'IMG/book3.png'},
+			{title:'Html認識',author:'apple',img:'IMG/book1.png'},
+			{title:'旅遊通識',author:'banana',img:'IMG/book2.png'},
+			{title:'攝影秘訣',author:'cat',img:'IMG/book3.png'},
+			]
+			return(
+			<div>
+				<ul>
+					{books.map((book,index)=>(
+					<li className="show" key={index}>
+						<img src={book.img}/>
+						<p>{book.title}<small>{book.author}</small></p>
+					</li>
+					))}
+				</ul>
+			</div>
+			);
+		}
+		ReactDOM.render(<Booklist />, document.getElementById("area"));
+	</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>輪播照片秀</title>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<style>
+  *{
+    margin:0;
+    padding:0;
+  }
+  body{
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  .carousel{
+    width: 600px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #333;
+    position: relative;
+  }
+  .carousel-item{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+  .carousel-item.active{
+    opacity: 1;
+  }
+  .carousel-item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .carousel-control{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: all 0.3s;
+  }
+  .carousel-control:hover{
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  .carousel-control.prev{
+    left: 10px;
+  }
+  .carousel-control.next{
+    right: 10px;
+  }
+  .carousel-indicators{
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+  }
+  .indicator{
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .indicator.active{
+    background-color: rgba(255, 255, 255, 1);
+
+  }
+</style>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const PhotoCarousel =()=>{
+      const[activeIndex,setActiveIndex]=React.useState(0);
+      const photos=[
+      {src:"images/p4.png",alt:"夕陽"},
+      {src:"images/p5.png",alt:"熱咖啡"},
+      {src:"images/p6.png",alt:"室內設計"},
+      ]
+
+      React.useEffect(()=>{
+        const interval=setInterval(nextSlide,5000)
+        return()=>clearInterval(interval)
+      },[])
+
+      const nextSlide=()=>{
+        setActiveIndex((prevIndex)=>(prevIndex+1)%photos.length)
+      }
+
+      const prevSlide=()=>{
+        setActiveIndex((prevIndex)=>(prevIndex-1+photos.length)%photos.length)
+      }
+
+      const goToSlide=(index)=>{
+        setActiveIndex(index)
+      }
+
+      return(
+      <div className="carousel">
+        {photos.map((photo,index)=>(
+        <div key={index} className={`carousel-item ${index === activeIndex ? 'active' : ''}`}>
+          <img src={photo.src} alt={photo.alt} />
+        </div>
+        ))}
+        <button className="carousel-control prev" onClick={prevSlide}>&lt;</button>
+        <button className="carousel-control next" onClick={nextSlide}>&gt;</button>
+        <div className='carousel-indicators'>
+          {photos.map((_,index)=>(
+          <div 
+          key={index} className={`indicator ${index===activeIndex ? 'active' : ''}`} onClick={()=>goToSlide(index)}>
+        </div>
+        ))}
+      </div>
+    </div>
+    )
+  }
+  ReactDOM.render(<PhotoCarousel />,document.getElementById('root'))
+</script>
+</body>
+</html>

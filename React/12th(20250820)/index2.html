@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React CDN Document</title>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<style>
+	h2{
+		color: darkblue;
+	}
+	h3{
+		color: darkcyan;
+	}
+</style>
+<body>
+    <!-- 根元件 -->
+    <div id="roots"></div>
+
+    <!-- 組件 容器構造 -->
+    <script type="text/babel">
+        function Welcome(props) {
+            return <h1>Hello, {props.name}!</h1>;
+        }
+
+        function App() {
+            return (
+                <section>
+                    <h2>Result</h2>
+                    <h3>
+                    	<Welcome name="小名A" />
+                    	<Welcome name="中名B" />
+                    	<Welcome name="大名C" />
+                    </h3>
+                </section>
+            );
+        }
+
+        // 演算執行組件在根元件
+        ReactDOM.render(<App />, document.getElementById("roots"));
+    </script>
+</body>
+</html>

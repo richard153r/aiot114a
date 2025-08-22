@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>猜水果名稱小遊戲</title>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<style>
+		*{margin:0;padding:0}
+		body{font-family:Arial;display:flex;justify-content:center;align-items:center;height:100vh;background-color:#fcfcfc;}
+
+		#root{background-color:#fff;padding:2em;border-radius:15px;box-shadow:0px 0px 10px #000;box-sizing:border-box;}
+		#root h1{color:darkblue;text-align:center; margin-bottom:20px;}
+		#root p{color:purple; font-size:1.5rem;}
+		#root .fruit-image{width:200px; height:200px; margin:1rem auto; display:block;}
+		#root input{display:block; width: 90%; margin:1rem auto;padding:0.85rem; box-sizing:border-box; text-align:center; font-size:0.9rem;}
+		#root button{display:block;width:70%;padding:0.5rem;box-sizing:border-box;background-color: darkcyan;color:lightcyan;border:none;border-radius:10px;margin:30px auto}
+		#root button:hover{cursor:pointer;background-color:darkblue;color:#fff;}
+		#root .message{color:brown;text-align:center;margin:1rem;font-weight:bold;}
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const fruit=[
+			{id:1,name:'apple',image:'images/apple.png'},
+			{id:2,name:'avcado',image:'images/avcado.png'},
+			{id:3,name:'dragon-fruit',image:'images/dragon-fruit.png'},
+			{id:4,name:'grape',image:'images/grape.png'},
+			{id:5,name:'guava',image:'images/Guava.png'},
+			{id:6,name:'lemon',image:'images/lemon.png'},
+			{id:7,name:'orange',image:'images/orange.png'},
+			{id:8,name:'banana',image:'images/banana.png'},
+			{id:9,name:'pineapple',image:'images/pineapple.png'},
+			{id:10,name:'strawberry',image:'images/strawberry.png'},
+		]
+
+		function FruitGuess(){
+			const[currentFruit,setCurrentFruit] = React.useState(null);
+			const[guess,setGuess] = React.useState('');
+			const[message,setMessage] = React.useState('');
+			const[score,setScore] = React.useState(0);
+
+			React.useEffect(()=>{
+				newFruit();
+			},[]) /*只執行一次*/
+
+			const newFruit=()=>{
+				const randomFruit = fruit[Math.floor(Math.random()*fruit.length)]
+				setCurrentFruit(randomFruit)
+				setGuess('')
+				setMessage('')
+			}
+
+			const handleGuess=()=>{
+				if(guess.toLowerCase()===currentFruit.name){ /*toLowerCase() 英文轉小寫*/
+				setMessage('答對了！')
+				setScore(score+1)
+				setTimeout(newFruit,1500)
+			}else{
+				setMessage('再想想看！！！')
+			}
+		}
+
+		return(
+		<div>
+			<h1>Guess Fruit Game</h1>
+			<p>Score:{score}</p>
+			{currentFruit && (
+				<img
+					className='fruit-image'
+					src={currentFruit.image}
+					alt={currentFruit.name}
+				/>
+			)}
+			<input
+				type="text"
+				value={guess}
+				onChange={(e)=>setGuess(e.target.value)}
+				placeholder="請輸入正確水果名稱"
+			/>
+			<button onClick={handleGuess} title="按下送出">確認送出</button>
+			<p className="message">{message}</p>
+			
+		</div>
+		)
+	}
+	ReactDOM.render(<FruitGuess/>,document.getElementById('root'))
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<style>
+	#root{
+		width: 80%;
+		margin: 50px auto;
+		text-align: center;
+	}
+	#root button{
+		margin: 1.5rem;
+		border: none;
+		background: linear-gradient(to top,darkblue,cyan);
+		color: #fff;
+		font-size: 1.2em;
+		border-radius: 10px;
+	}
+	#root button:hover{
+		filter: invert()drop-shadow(2px 2px 2px #000);
+		cursor: pointer;
+	} 
+</style>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		function Toggle(){
+			const[isOn,setIson]=React.useState(false);
+			return(
+			<div>
+				<button onClick={()=>setIson(!isOn)}>{isOn?"關閉":"開啟"}</button>
+				<p>狀態:{isOn?"開":"關"}</p>
+			</div>
+			)
+		}
+		ReactDOM.render(<Toggle/>,document.getElementById('root'))
+	</script>
+</body>
+</html>

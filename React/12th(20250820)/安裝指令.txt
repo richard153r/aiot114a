@@ -1,0 +1,14 @@
+通過以下命令全局安裝：
+ npm install -g create-react-app
+
+建立一個新專案
+
+npx create-react-app 自訂資料夾名稱
+ cd 自定資料夾的名稱
+ npm start(啟動伺服器)
+
+
+除了本機部署，也能使用CDN的方式，請參考分享的檔案進行CDN引用
+
+- 載入 react, react-dom, babel等檔案
+- 將 script 的 type 指定為 text/babel 

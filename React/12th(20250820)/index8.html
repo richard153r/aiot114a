@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+	<style>
+		#root{
+			width: 80%;
+			text-align: center;
+			margin: 20px auto;
+		}
+		ul{
+			width: 100%;
+			list-style: none;
+		}
+		ul li{
+			margin: 20px;
+		}
+		ul li span{
+			width: 200px;
+			margin-right: 20px;
+			display: inline-block;
+			border-bottom:dashed 1px lightgray;
+			/* background-color: cyan; */
+		}
+	</style>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		function Too(){
+			const [tasks, setTasks] = React.useState([
+			{id: 1, text: "上課", done: false},
+			{id: 2, text: "運動", done: false},
+			{id: 3, text: "開會", done: false},
+			]);
+
+			const [newx,setNew] = React.useState("")
+
+			function Add(){
+				const newTask={
+					id:Date.now(),
+					text:newx,
+					done:false
+				}
+				setTasks([...tasks,newTask])
+				setNew("")
+			}
+
+			function toggleDone(id){
+				const updated = tasks.map(
+				task => task.id === id ? {...task, done: !task.done} : task)
+				setTasks(updated)
+			}
+
+			function DT(id){
+				const updated=tasks.filter(task=>task.id!==id)
+				setTasks(updated)
+			}
+
+			return(
+			<div>
+				<h2>代辦清單：{tasks.length}/尚未完成:{tasks.filter(task=>!task.done).length}</h2>
+				<hr/>
+				<input type="text" value={newx} placeholder="輸入新的代辦事項" onChange={e=>setNew(e.target.value)}/>
+				<button onClick={Add}>新增事項</button>
+				<hr/>
+				<ul>
+					{tasks.map(task => (
+					<li key={task.id}>
+						<span>{task.text}-{task.done?"已完成":"尚未完成"}</span>
+							<button onClick={() => toggleDone(task.id)}>{task.done ? "取消完成" : "標註完成"}</button>
+							<button onClick={() => DT(task.id)}>刪除</button>
+						</li>
+						))}
+					</ul>
+				</div>
+				);
+			}
+
+			ReactDOM.render(<Too/>, document.getElementById('root'));
+		</script>
+
+	</body>
+	</html>
