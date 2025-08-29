@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>React CDN Document</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<style>
+	body{
+		margin: 0px;
+		padding: 0px;
+		background: #ccc;
+		font-family: Arial;
+	}
+	#root{
+		max-width: 1200px;
+		margin: 0px auto;
+		padding: 15px;
+		box-sizing: border-box;
+	}
+	nav{
+		background: #333;
+		margin: 0px auto;
+		padding: 20px;
+		box-sizing: border-box;
+	}
+	nav ul{
+		list-style-type: none;
+		display: flex;
+		justify-content: space-around;
+	}
+	nav ul li a{
+		color: #fff;
+		text-decoration: none;
+		width: 6rem;
+		display: block;
+		text-align: center;
+		padding: 10px;
+	}
+	nav ul li a:hover{
+		background: #666;
+		border-radius: 10px;
+		color: #ff0;
+	}
+	.page{
+		background-color: #fff;
+		padding: 20px;
+		margin-top: 15px;
+		border-radius: 10px;
+		box-shadow: 0px 2px 5px rgba(0,0,0,0.3);
+	}
+	h1,h2{
+		color: #963;
+	}
+	p{
+		color: #633;
+	}
+	.product{
+		border: 1px solid #999;
+		padding: 10px;
+		margin: 10px 0px;
+		border-radius: 5px;
+
+	}
+</style>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const Home=()=>(
+		<div className="page">
+			<h1>Welcome to our business website</h1>
+			<p>we provide best solution for your needs
+				<small>最佳解決方案</small>
+			</p>
+		</div>
+		)
+
+		const About=()=>(
+		<div className="page">
+			<h1>About US</h1>
+			<p>we are a team of professional dedicated to excellence
+				<small>我們是最佳的創意團隊</small>
+			</p>
+		</div>
+		)
+
+		const Products=()=>(
+		<div className="page">
+			<h1>Our Products</h1>
+			<div className="product">
+				<h2>Product 1</h2>
+				<p>A good choice for you</p>
+			</div>
+			<div className="product">
+				<h2>Product2</h2>
+				<p>Great design for your car</p>
+			</div>
+		</div>
+		)
+
+		const Contact=()=>(
+		<div className="page">
+			<h1>Contact Info</h1>
+			<p>Email:info@ourbusiness.com</p>
+			<p>Tel:866-03-3356168</p>
+		</div>
+		)
+		{/*主要元件*/}
+		const Main=()=>{
+			const[page,setPage]=React.useState('home')
+			const navigate=(newPage)=>{
+				setPage(newPage)
+				window.history.pushState(null,"",`/${newPage}`)
+				
+			}
+			React.useEffect(()=>{
+				const handlePopState=()=>{
+					const path=window.location.pathname.slice(1)||'home'
+					setPage(path)
+				}
+				window.addEventListener('popstate', handlePopState);
+				return () => window.removeEventListener('popstate', handlePopState);
+			}, []);
+
+			return (
+			<div>
+				<nav>
+					<ul>
+						<li><a href="/" onClick={(e)=>{e.preventDefault();navigate('home')}}>Home</a></li>
+						<li><a href="/" onClick={(e)=>{e.preventDefault();navigate('about')}}>About</a></li>
+						<li><a href="/" onClick={(e)=>{e.preventDefault();navigate('products')}}>Products</a></li>
+						<li><a href="/" onClick={(e)=>{e.preventDefault();navigate('contact')}}>Contact</a></li>
+					</ul>
+				</nav>
+				{page==='home'&&<Home/>}
+				{page==='about'&&<About/>}
+				{page==='products'&&<Products/>}
+				{page==='contact'&&<Contact/>}
+			</div>
+			)
+		}
+		ReactDOM.render(<Main/>,document.getElementById('root'))
+	</script>
+</body>
+</html>

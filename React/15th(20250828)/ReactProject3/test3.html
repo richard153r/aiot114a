@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>購物車</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		const products=[
+		{id:1,name:"SmartPhone",price:599.99,img:"images/s1.webp"},
+		{id:2,name:"Laptop",price:999.99,img:"images/s2.webp"},
+		{id:3,name:"HeaPhones",price:149.99,img:"images/s3.webp"},
+		{id:4,name:"Smartwatch",price:399.99,img:"images/s4.webp"},
+		]
+		function App(){
+			const [cart,setCart]=React.useState([])
+			const addTocart=(product)=>{
+				setCart([...cart,product])
+			}
+			return(
+			<div>
+				<header className='header'><h1>Teact E-Commerce</h1></header>
+				<div className="product-grid">
+					{products.map((product) => (
+					<ProductCard key={product.id} product={product} addToCart={addTocart}/>
+					))}
+				</div>
+				<Cart items={cart}/>
+			</div>
+			)
+		}
+
+		function ProductCard({product,addToCart}){
+			return(
+			<div className="product-card">
+				<img src={product.img} alt={product.name} className="product-image" />
+				<h2 className="product-title">{product.name}</h2>
+				<p className="product-price">{product.price}</p>
+				<button className="add-to-cart" onClick={()=>addToCart(product)}>Add Cart</button>
+			</div>
+			)
+		}
+
+		function Cart({items}){
+			const total=items.reduce((sum,item)=>sum+item.price,0)
+			return(
+			<div className='cart'>
+				<h2>Your Cart</h2>
+				{items.map((item,index)=>(
+				<p key={index}>{item.name}-${item.price}</p>
+				))}
+				<h3>Total:${total.toFixed(2)}</h3>
+			</div>
+			)
+		}
+		ReactDOM.render(<App/>,document.getElementById('root'))
+	</script>
+</body>
+</html>

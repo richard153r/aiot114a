@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>localStorage exmple</title>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+</head>
+<body>
+	<h2 id="greeting">你好!遊客~</h2>
+	<input type="text" placeholder="請輸入你的英文名字" name="" id="nameInput">
+	<input type="button" value="儲存姓名" id="saveBtn">
+	<input type="button" value="清除記憶" id="saveBtn2">
+
+	<script>
+		const input=document.getElementById('nameInput')
+		const btn=document.getElementById('saveBtn')
+		const btn2=document.getElementById('saveBtn2')
+		const greeting=document.getElementById('greeting')
+
+		const storedName=localStorage.getItem('name')
+		if(storedName){
+			greeting.textContent=`你好！${storedName}`
+			input.value=storedName
+		}
+
+		btn.addEventListener('click',()=>{
+			const name=input.value.trim()
+			if(name){
+				localStorage.setItem('name',name)
+				greeting.textContent=`你好!${name}`
+				alert('名子已儲存')
+			}else{
+				alert("請出入有效的名字")
+			}
+		})
+		btn2.addEventListener('click',()=>{
+			const name=input.value.trim()
+			if(name){
+				localStorage.removeItem('name')
+				greeting.textContent=`你好!${name}`
+				alert('已清空')
+				window.location.reload(0)
+			}else{
+				alert("請輸入有效名字")
+			}
+		})
+	</script>
+</body>
+</html>
