@@ -1,5 +1,5 @@
 """
-URL configuration for mblog project.
+URL configuration for bstore project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -16,13 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from mysite.views import index,showpost,mptt,about
+from mysite.views import index, book_list, book_detail, books_by_category, books_by_author
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('abc/<slug:slug>', showpost),
-    path('abc/', showpost),
-    path('mqtt/',mptt),
-    path('about/', about),
+    path('', index, name='index'),
+    path('books/', book_list, name='book_list'),
+    path('detail/<int:book_id>/', book_detail, name='detail'),
+    path('category/<str:category_name>/', books_by_category, name='category'),
+    path('author/<slug:author_slug>/', books_by_author, name='author'),
 ]
